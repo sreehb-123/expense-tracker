@@ -9,7 +9,11 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(cors());
+app.use(cors({
+    origin: 'https://expense-tracker-frontend-khe0.onrender.com',
+    methods: ['GET','POST','DELETE'],
+    credentials: true
+}));
 app.use(express.json());
 
 mongoose.connect(process.env.MONGO_URI,{
