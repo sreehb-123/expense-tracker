@@ -21,9 +21,6 @@ mongoose.connect(process.env.MONGO_URI,{
     console.log('Error in connecting to MongoDB', error.message);
 });
 
-app.use('/', (req,res) => {
-    res.send('Welcome to the Expense Tracker API');
-});
 
 app.use('/api', expenseRoutes);
 

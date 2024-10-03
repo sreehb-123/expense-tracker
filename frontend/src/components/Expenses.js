@@ -10,7 +10,8 @@ const Expenses = () => {
     useEffect(() => {
         const fetchExpenses = async () => {
             try {
-                const response = await axios.get('/api/expenses');
+                const response = await axios.get('https://expense-tracker-backend-ix6c.onrender.com/api/expenses');
+                console.log(response.data);
                 setExpenses(response.data);
                 setLoading(false);
             } catch (error) {
@@ -31,7 +32,7 @@ const Expenses = () => {
         }
 
         try {
-            const response = await axios.post('/api/expenses',{description,amount});
+            const response = await axios.post('https://expense-tracker-backend-ix6c.onrender.com/api/expenses',{description,amount});
             setExpenses([...expenses,response.data]);
             setDescription('');
             setAmount('');
@@ -51,7 +52,7 @@ const Expenses = () => {
 
             setTimeout(async () => {   
                 try {
-                    await axios.delete(`/api/expenses/${id}`);
+                    await axios.delete(`https://expense-tracker-backend-ix6c.onrender.com/api/expenses/${id}`);
                     setExpenses(expenses.filter(exp => exp._id !== id));
                 } catch (error) {
                     console.error('Error deleting expense: ',error);
