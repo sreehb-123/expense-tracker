@@ -1,11 +1,18 @@
 import './App.css';
 import Expenses from './components/Expenses';
+import Login from './components/Login';
+import Home from './components/Home';
+import { Router,Routes,Route } from 'react-router-dom';
 
 function App() {
   return (
-    <div className='App'>
-      <Expenses />
-    </div>
+    <Router>
+      <Routes>
+        <Route path='/' element={<Home /> } />
+        <Route path='/login' element={<Login />} />
+        <Route path='/expenses' element={<Expenses />} />
+      </Routes>
+    </Router>
   );
 }
 

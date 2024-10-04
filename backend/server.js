@@ -3,6 +3,8 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import expenseRoutes from './routes/expenseRoutes.js';
+import authMiddleware from './middleware/authMiddleware.js';
+import authRoutes from './routes/Auth.js';
 
 dotenv.config();
 
@@ -27,6 +29,11 @@ mongoose.connect(process.env.MONGO_URI,{
 
 
 app.use('/api', expenseRoutes);
+app.use('/api/auth', authRoutes);
+
+app.get('/api/protected', authMiddleware, (req,res) => {
+    res.json({ message: 'This is a protected route' });
+});
 
 app.listen(PORT,()=>{
     console.log(`Server listening on ${PORT}`);
