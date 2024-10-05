@@ -29,7 +29,7 @@ mongoose.connect(process.env.MONGO_URI,{
 
 
 app.use('/api', expenseRoutes);
-app.use('/api/auth', authRoutes);
+app.use('/api', authRoutes);
 
 app.get('/api/protected', authMiddleware, (req,res) => {
     res.json({ message: 'This is a protected route' });
