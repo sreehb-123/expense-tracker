@@ -15,13 +15,13 @@ const Login = () => {
         const endpoint = isLogin ? '/api/login' : '/api/register';
 
         try {
-                const response = await axios.get(`https://expense-tracker-backend-ix6c.onrender.com${endpoint}`,{
+                const response = await axios.post(`https://expense-tracker-backend-ix6c.onrender.com${endpoint}`,{
                     email,
                     password,
                 });
 
                 localStorage.setItem('token',response.data.token);
-                navigate('/home');
+                navigate('/expenses');
 
         } catch (error) {
             setError('Login failed. Please check credentials.');
@@ -53,7 +53,7 @@ const Login = () => {
                     <button onClick={() => {
                         setIsLogin(!isLogin);
                     }}>
-                        {isLogin ? 'Login' : 'Register'}
+                        {isLogin ? 'Register' : 'Login'}
                     </button>
                 </p>
                 {error && <p>{error}</p>}
